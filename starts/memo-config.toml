@@ -1,0 +1,73 @@
+# This example config contains all avaliable configuration options.
+# Options are assigned their default or left blank with a FIXME: mark.
+
+
+# ---- needed for both the API and the daemon ----
+[redis]
+host = ""                 # FIXME:
+port = "6379"             # FIXME:
+passwd = ""               # FIXME:
+connection = "redis"
+
+
+# ---- needed only for the API ----
+[api]
+port = "23485" # this needs to be a string
+production = false
+
+
+# ---- needed only for the deamon ----
+
+# Needed when fetching via REST interface
+[bitcoind.rest]
+protocol = "http"
+host = "10.0.1.102"
+port = "8332"
+responseTimeout = 30      # seconds
+
+# Needed when fetching via JSON-RPC interface
+[bitcoind.jsonrpc]
+protocol = "http"
+host = "10.0.1.102"
+port = "8332" # regtest 18443 # testnet 18332
+username = "user"
+password ="password"
+responseTimeout = 30 # seconds
+
+[mempool]
+enable = true            # enable mempool fetching
+fetchInterface = "JSON-RPC"   # fetch mempool via REST or JSON-RPC
+fetchInterval = 60        # seconds
+callSaveMempool = false    # calls the savemempool RPC on average after every fourth fetch
+  [mempool.processing]
+  processCurrentMempool = true
+  processHistoricalMempool = true
+  processTransactionStats = true
+
+[feeratefetcher]
+enable = true
+fetchInterval = 180
+
+[log]
+enableTrace = true
+colorizeOutput = true
+
+[zmq]
+enable = true            # enable the zmq interface
+host = "10.0.1.102"        # currently only tcp connections are supported
+port = "28832"
+  [zmq.subscribeTo]
+  rawTx     = true
+  rawBlock  = true        # needed to write recentBlocks to database
+  hashTx    = false
+  hashBlock = true
+  rawTx2    = true       # this needs a custom bitcoind patch https://github.com/0xB10C/bitcoin/tree/2019-06-rawtx2-zmq-for-memod to work
+  [zmq.saveMempoolEntries]
+  enable = true
+  dbPath = "./sqlite.db"
+
+[mysql]
+host = "localhost"
+port = "3306"
+user = "root"
+password = "onchain1201"

@@ -1,0 +1,1 @@
+nohup ./bitcoind  -rpcuser=user -rpcpassword=password -server -txindex -zmqpubrawtx2=tcp://10.0.1.102:28832 -zmqpubrawtx=tcp://10.0.1.102:28333 -zmqpubrawblock=tcp://10.0.1.102:28832 -rpcport=8332 -rpcallowip=10.0.1.102/255.255.255.0 -rpcbind=10.0.1.102:8332 &
