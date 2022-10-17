@@ -1,0 +1,1 @@
+sudo nohup ./bin/ngrokd -domain="www.openchart.org" &
