@@ -1,0 +1,1 @@
+nohup ./bin/ngrokd -domain="www.openchart.org" -httpsAddr=":4444" -httpAddr=":5555" -tunnelAddr=":6666" &
